@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pi Network Micro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      max-width: 600px;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #444;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 1rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    .btn {
+      background: #ffd700;
+      color: #000;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #ffc400;
+    }
+    .copy-box {
+      background: #1e1e2f;
+      border: 1px solid #555;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 600px;
+    }
+    .copy-box input {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      width: 100%;
+    }
+    .copy-box button {
+      background: #ffd700;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <img src="logo.png" alt="Pi Logo" style="width: 120px; margin-top: 2rem;" />
+
+  <h1>Pi Network Micro</h1>
+  <p>
+    Pi Network is a social cryptocurrency, developer platform, and ecosystem designed for widespread accessibility and real-world utility.
+  </p>
+
+  <!-- Gambar GIF Tolol -->
+  <img src="degen.gif" alt="pi GIF" style="width: 300px; margin: 1.5rem 0; border-radius: 16px; box-shadow: 0 0 15px rgba(255,255,255,0.2);" />
+
+  <div class="card">
+    <h2>Token Address</h2>
+    <div class="copy-box">
+      <input type="text" value="6uwWSGvfkz7zL65J9yvu6wLcreaeAzGpmJFjTc8wTf51" id="copyText" readonly />
+      <button onclick="copyAddress()">Copy</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <a class="btn" href="https://t.me/pinetworkmicro" target="_blank">Join Telegram</a>
+  </div>
+
+  <div class="card">
+    <a class="btn" href="https://dexscreener.com/solana/6uwWSGvfkz7zL65J9yvu6wLcreaeAzGpmJFjTc8wTf51" target="_blank">View Chart</a>
+  </div>
+
+  <script>
+    function copyAddress() {
+      const copyText = document.getElementById("copyText");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      alert("Copied address: " + copyText.value);
+    }
+  </script>
+</body>
+
+</html>
