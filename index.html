@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MYTHIC 💩 CHAOS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading</title>
   <style>
     html, body {
       margin: 0;
@@ -57,7 +57,6 @@
       z-index: 99;
     }
 
-    /* Animasi acak */
     @keyframes blink {
       0%, 100% { opacity: 0; }
       50% { opacity: 1; }
@@ -86,6 +85,14 @@
       50% { transform: scale(1.5); opacity: 1; }
       100% { transform: scale(0.1); opacity: 0; }
     }
+
+    @keyframes chaos {
+      0% { transform: translate(0, 0) rotate(0) scale(1); }
+      25% { transform: translate(-200%, 100%) rotate(90deg) scale(0.5); }
+      50% { transform: translate(150%, -150%) rotate(180deg) scale(2); }
+      75% { transform: translate(50%, 200%) rotate(270deg) scale(0.8); }
+      100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -94,39 +101,28 @@
   <div class="footer">🌀🔍🌀</div>
 
   <script>
-    const emojis = ["😫", "🤔", "😏", "😂", "🫣", "🫢", "👻", "👾", "👹", "💀", "🥴", "😵‍💫", "👀", "👽", "🌀", "🔥", "✨", "💫", "🦠", "🎃"];
-    const animations = ["blink", "float", "spinGrow", "wiggle", "zoom"];
+    const emojis = ["😫", "🤔", "😏", "😂", "🫣", "🫢", "👻", "👾", "👹", "💀", "🥴", "😵‍💫", "100000%", "👽", "🌀", "🔥", "✨", "💫", "🦠", "🎃"];
+    const animations = ["blink", "float", "spinGrow", "wiggle", "zoom", "chaos"];
 
     function spawnEmoji() {
       const emoji = document.createElement("div");
       emoji.classList.add("emoji");
-
       emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-
-      // Posisi random
       emoji.style.top = `${Math.random() * 100}%`;
       emoji.style.left = `${Math.random() * 100}%`;
-
-      // Ukuran random
       emoji.style.fontSize = `${Math.floor(Math.random() * 5 + 3)}vw`;
-
-      // Animasi random
       const anim = animations[Math.floor(Math.random() * animations.length)];
       emoji.style.animation = `${anim} ${Math.random() * 3 + 2}s infinite ease-in-out`;
-
       document.body.appendChild(emoji);
-
-      // Hapus setelah 10 detik
-      setTimeout(() => {
-        emoji.remove();
-      }, 10000);
+      setTimeout(() => emoji.remove(), 12000);
     }
 
-    // Spawn terus-terusan secara chaotic
     setInterval(() => {
-      const delay = Math.random() * 2000 + 500; // 0.5s - 2.5s
-      setTimeout(spawnEmoji, delay);
-    }, 800);
+      const count = Math.floor(Math.random() * 3) + 1;
+      for (let i = 0; i < count; i++) {
+        setTimeout(spawnEmoji, Math.random() * 1000);
+      }
+    }, 1000);
   </script>
 </body>
 </html>
