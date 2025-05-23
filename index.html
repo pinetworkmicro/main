@@ -17,6 +17,8 @@
       font-family: 'Comic Sans MS', cursive, sans-serif;
       text-align: center;
       padding: 10vh 5vw;
+      position: relative;
+      overflow: hidden;
     }
 
     .poop {
@@ -62,11 +64,57 @@
       .message { font-size: 28px; }
       .footer { font-size: 40px; }
     }
+
+    .emoji-anomali {
+      position: absolute;
+      font-size: 5vw;
+      opacity: 0;
+      animation: anomali 4s infinite;
+    }
+
+    @keyframes anomali {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(0deg);
+        top: 50%;
+        left: 50%;
+      }
+      25% {
+        opacity: 1;
+        transform: scale(1.5) rotate(20deg);
+        top: calc(20% + 10vh);
+        left: calc(30% + 5vw);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(0.8) rotate(-15deg);
+        top: calc(80% - 10vh);
+        left: calc(60% - 5vw);
+      }
+      75% {
+        opacity: 1;
+        transform: scale(1.2) rotate(5deg);
+        top: calc(40% + 5vh);
+        left: calc(80% - 5vw);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.4) rotate(-30deg);
+        top: 50%;
+        left: 50%;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="poop">💩</div>
   <div class="message">wait a minute.. 🗣️ ...</div>
   <div class="footer">🌀🔍🌀</div>
+
+  <!-- Emoji Anomali -->
+  <div class="emoji-anomali" style="animation-delay: 0s;">😫</div>
+  <div class="emoji-anomali" style="animation-delay: 1.3s;">🤔</div>
+  <div class="emoji-anomali" style="animation-delay: 2.6s;">😏</div>
+  <div class="emoji-anomali" style="animation-delay: 3.9s;">😂</div>
 </body>
 </html>
