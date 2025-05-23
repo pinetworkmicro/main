@@ -2,27 +2,92 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mini Chess Telegram</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        
-        #board {
-            width: 320px;
-            height: 320px;
-            border: 2px solid #333;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Chess Telegram</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    #board {
+      width: 320px;
+      height: 320px;
+      border: 2px solid #333;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      color: #666;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
-    <h2>welcome to mini chess!</h2>
-    <div id="board">[ chessboard.js]</div>
-    <p>demo simple..</p>
+  <h2>Welcome to Mini Chess!</h2>
+  <div id="board">[Chessboard placeholder]</div>
+
+  <p id="players"></p>
+
+  <p>Result:</p>
+  <button onclick="submitResult('1-0')">Player 1 menang</button>
+  <button onclick="submitResult('0-1')">Player 2 menang</button>
+  <button onclick="submitResult('0.5-0.5')">Draw</button>
+
+  <p id="status"></p>
+
+  <script>
+    // Ambil nama pemain dari query param match
+    const urlParams = new URLSearchParams(window.location.search);
+    const matchId = urlParams.get('match');
+
+    if (!matchId) {
+      document.getElementById('board').innerText = "Tidak ada match ID.";
+    } else {
+      const players = matchId.split('_vs_');
+      document.getElementById('players').innerText = `Player 1: @${players[0]}  vs  Player 2: @${players[1]}`;
+    }
+
+    function submitResult(result) {
+      if (!matchId) return alert("Match ID tidak ditemukan.");
+
+      const players = matchId.split('_vs_');
+      let winner;
+      if (result === '1-0') winner = players[0];
+      else if (result === '0-1') winner = players[1];
+      else winner = 'draw';
+
+      fetch('http://localhost:5000/submit_score', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ match: matchId, result: result, winner: winner }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('status').innerText = "Skor terkirim ke bot!";
+        })
+        .catch(err => {
+          document.getElementById('status').innerText = "Gagal kirim skor!";
+        });
+    }
+  </script>
 </body>
 
 </html>
