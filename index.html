@@ -1,120 +1,132 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loading 💩</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MYTHIC 💩 CHAOS</title>
   <style>
-    * {
-      box-sizing: border-box;
+    html, body {
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      text-align: center;
-      padding: 10vh 5vw;
-      position: relative;
       overflow: hidden;
+      background: #000;
+      color: white;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
     }
 
     .poop {
       font-size: 15vw;
-      animation: shake 0.1s infinite alternate;
-      display: inline-block;
+      animation: poopshake 0.1s infinite alternate;
+      margin-top: 10vh;
     }
 
-    @keyframes shake {
+    @keyframes poopshake {
       0% { transform: rotate(0deg); }
-      25% { transform: rotate(15deg); }
-      50% { transform: rotate(-25deg); }
-      75% { transform: rotate(3deg); }
-      100% { transform: rotate(-30deg); }
+      25% { transform: rotate(10deg); }
+      50% { transform: rotate(-20deg); }
+      75% { transform: rotate(5deg); }
+      100% { transform: rotate(-15deg); }
     }
 
     .message {
       font-size: 5vw;
-      margin-top: 5vh;
       animation: pulse 1.2s infinite;
     }
 
     @keyframes pulse {
-      0% { opacity: 0.5; }
+      0%, 100% { opacity: 0.5; }
       50% { opacity: 1; }
-      100% { opacity: 0.5; }
     }
 
     .footer {
       font-size: 8vw;
-      margin-top: 5vh;
       animation: spin 3s linear infinite;
-      display: inline-block;
+      margin-top: 5vh;
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
-    @media (min-width: 768px) {
-      .poop { font-size: 100px; }
-      .message { font-size: 28px; }
-      .footer { font-size: 40px; }
-    }
-
-    .emoji-anomali {
+    .emoji {
       position: absolute;
-      font-size: 5vw;
-      opacity: 0;
-      animation: anomali 4s infinite;
+      pointer-events: none;
+      user-select: none;
+      z-index: 99;
     }
 
-    @keyframes anomali {
-      0% {
-        opacity: 0;
-        transform: scale(0.5) rotate(0deg);
-        top: 50%;
-        left: 50%;
-      }
-      25% {
-        opacity: 1;
-        transform: scale(1.5) rotate(20deg);
-        top: calc(20% + 10vh);
-        left: calc(30% + 5vw);
-      }
-      50% {
-        opacity: 0.7;
-        transform: scale(0.8) rotate(-15deg);
-        top: calc(80% - 10vh);
-        left: calc(60% - 5vw);
-      }
-      75% {
-        opacity: 1;
-        transform: scale(1.2) rotate(5deg);
-        top: calc(40% + 5vh);
-        left: calc(80% - 5vw);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(0.4) rotate(-30deg);
-        top: 50%;
-        left: 50%;
-      }
+    /* Animasi acak */
+    @keyframes blink {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes spinGrow {
+      0% { transform: scale(0.5) rotate(0); }
+      50% { transform: scale(1.5) rotate(180deg); }
+      100% { transform: scale(0.5) rotate(360deg); }
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    @keyframes zoom {
+      0% { transform: scale(0.1); opacity: 0; }
+      50% { transform: scale(1.5); opacity: 1; }
+      100% { transform: scale(0.1); opacity: 0; }
     }
   </style>
 </head>
 <body>
   <div class="poop">💩</div>
-  <div class="message">wait a minute.. 🗣️ ...</div>
+  <div class="message">loading... wait a minute.. 🗣️</div>
   <div class="footer">🌀🔍🌀</div>
 
-  <!-- Emoji Anomali -->
-  <div class="emoji-anomali" style="animation-delay: 0s;">😫</div>
-  <div class="emoji-anomali" style="animation-delay: 1.3s;">🤔</div>
-  <div class="emoji-anomali" style="animation-delay: 2.6s;">😏</div>
-  <div class="emoji-anomali" style="animation-delay: 3.9s;">😂</div>
+  <script>
+    const emojis = ["😫", "🤔", "😏", "😂", "🫣", "🫢", "👻", "👾", "👹", "💀", "🥴", "😵‍💫", "👀", "👽", "🌀", "🔥", "✨", "💫", "🦠", "🎃"];
+    const animations = ["blink", "float", "spinGrow", "wiggle", "zoom"];
+
+    function spawnEmoji() {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+      // Posisi random
+      emoji.style.top = `${Math.random() * 100}%`;
+      emoji.style.left = `${Math.random() * 100}%`;
+
+      // Ukuran random
+      emoji.style.fontSize = `${Math.floor(Math.random() * 5 + 3)}vw`;
+
+      // Animasi random
+      const anim = animations[Math.floor(Math.random() * animations.length)];
+      emoji.style.animation = `${anim} ${Math.random() * 3 + 2}s infinite ease-in-out`;
+
+      document.body.appendChild(emoji);
+
+      // Hapus setelah 10 detik
+      setTimeout(() => {
+        emoji.remove();
+      }, 10000);
+    }
+
+    // Spawn terus-terusan secara chaotic
+    setInterval(() => {
+      const delay = Math.random() * 2000 + 500; // 0.5s - 2.5s
+      setTimeout(spawnEmoji, delay);
+    }, 800);
+  </script>
 </body>
 </html>
